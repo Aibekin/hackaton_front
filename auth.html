@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth</title>
+    <link rel="stylesheet" href="css/auth.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="auth">
+        <h2 class="auth__title">Sign up</h2>
+        <div class="auth__type">
+            <label>Тип аккаунта</label>
+            <select id="role" required>
+                <option value="worker">Работник</option>
+                <option value="employer">Работодатель</option>
+            </select>
+        </div>
+        <form method="post" class="auth__form" id="registerForm">
+            <div class="auth__info worker">
+                <div class="auth__item">
+                    <label for="name">Имя</label>
+                    <input type="text" name="name" class="auth__input" placeholder="Никита" id="userName">
+                </div>
+                <div class="auth__item">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" class="auth__input" placeholder="nikita@example.com" id="email">
+                </div>
+                <div class="auth__item">
+                    <label for="gender">Пол</label>
+                    <div class="genders">
+                        <div>
+                            <input type="radio" id="gender-male" name="gender" value="male">
+                            <label for="gender-male">Муж</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="gender-female" name="gender" value="female">
+                            <label for="gender-female">Жен</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="auth__item">
+                    <label for=" age">Возраст</label>
+                    <input type="number" class="auth__input" name="age" id="age">
+                </div>
+                <div class="auth__item">
+                    <label for="exp">Опыт работы</label>
+                    <input type="number" name="exp" class="auth__input" id="experience">
+                </div>
+                <div class="auth__item">
+                    <label for="spec">Специальность</label>
+                    <input type="text" class="auth__input" name="spec" id="spec">
+                </div>
+                <div class="auth__password">
+                    <label for="country">Страна</label>
+                    <input type="text" class="auth__input" name="country" id="country">
+                </div>
+                <div class="auth__password">
+                    <label for="password">Пароль</label>
+                    <input type="password" class="auth__input" name="password" id="password">
+                </div>
+            </div>
+            <div class="auth__info auth__info-hidden employer">
+                <div class="auth__item">
+                    <label for="name">Имя</label>
+                    <input type="text" name="name" class="auth__input" placeholder="Никита" id="userName-employer">
+                </div>
+                <div class="auth__item">
+                    <label for="organizationName">Название компании</label>
+                    <input type="text" name="organizationName" class="auth__input" placeholder="Никита"
+                        id="organizationName">
+                </div>
+                <div class="auth__item">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" class="auth__input" placeholder="nikita@example.com"
+                        id="email-employer">
+                </div>
+                <div class="auth__item">
+                    <label for="country">Страна</label>
+                    <input type="text" class="auth__input" name="country" id="country-employer">
+                </div>
+                <div class="auth__password">
+                    <label for="password">Пароль</label>
+                    <input type="password" class="auth__input" name="password" id="password-employer">
+                </div>
+            </div>
+            <button type="submit" class="auth__submit">Готово</button>
+        </form>
+    </div>
+    <script src="scripts/auth.js"></script>
+</body>
+
+</html>

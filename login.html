@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth</title>
+    <link rel="stylesheet" href="css/auth.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="auth">
+        <h2 class="auth__title">Sign in</h2>
+        <form method="post" class="auth__form" id="loginForm">
+            <div class="auth__password">
+                <label for="email">Email</label>
+                <input type="text" name="email" class="auth__input" placeholder="nikita@example.com" id="email">
+            </div>
+            <div class="auth__password">
+                <label for="password">Пароль</label>
+                <input type="password" class="auth__input" name="password" id="password">
+            </div>
+            <button type="submit" class="auth__submit">Войти</button>
+        </form>
+    </div>
+    <script>
+        const login = document.getElementById("loginForm");
+        login.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const loginData = {
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            };
+
+            try {
+                const response = await fetch('https://hackaton-backend-r2a2.onrender.com/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(loginData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    localStorage.setItem('token', data.token);
+                    window.location.href = 'user.html';
+                } else {
+                    alert(data.message || 'Ошибка регистрации');
+                }
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert('Ошибка соединения');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,236 @@
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif
+}
+
+body {
+    position: relative;
+    background-color: #333
+}
+
+.header {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    padding: 0 140px;
+    background-color: #222;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.header__user {
+    width: 60px;
+    height: 60px
+}
+
+.header__user img {
+    fill: #fff
+}
+
+.header__auth {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 25px
+}
+
+.header__auth a {
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff
+}
+
+.header__nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 70px;
+    list-style: none
+}
+
+.header__link {
+    font-size: 25px;
+    font-weight: 600
+}
+
+.header__link a {
+    color: #fff;
+    text-decoration: none
+}
+
+.header__create {
+    font-size: 25px;
+    color: #fff
+}
+
+#container {
+    position: fixed;
+    top: 200px;
+    left: 50px;
+    width: 40px;
+    height: 300px;
+    border-radius: 20px;
+    background-color: #fff;
+    overflow: hidden
+}
+
+#container #progress {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    background-color: #e76210;
+    -webkit-transition: height .3s;
+    transition: height .3s
+}
+
+.job {
+    padding: 20px 140px;
+    padding-top: 120px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 30px
+}
+
+.job__title {
+    border-radius: 25px;
+    font-size: 20px;
+    font-weight: 600;
+    width: 200px;
+    height: 45px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #222;
+    color: #fff
+}
+
+.job__list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 30px
+}
+
+.card {
+    width: 300px;
+    height: 400px;
+    padding: 20px;
+    border-radius: 25px;
+    background-color: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    gap: 20px
+}
+
+.card__info {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    gap: 15px
+}
+
+.card__title {
+    font-size: 25px;
+    font-weight: 700
+}
+
+.card__pos,
+.card__pay,
+.card__exp,
+.card__group,
+.card__descr,
+.card__country {
+    font-size: 15px;
+    font-weight: 500
+}
+
+.card__submit {
+    font-size: 20px;
+    font-weight: 600;
+    width: 100%;
+    height: 50px;
+    background-color: #222;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    -webkit-transition: .5s all;
+    transition: .5s all
+}
+
+.card__submit:hover {
+    background-color: #fff;
+    color: #222
+}
+
+/*# sourceMappingURL=job.min.css.map */

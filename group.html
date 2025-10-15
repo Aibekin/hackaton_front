@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job</title>
+    <link rel="stylesheet" href="css/job.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <a href="user.html" class="header__user" id="avatar">
+            <img src="icons/user.svg" alt="">
+        </a>
+        <div class="header__auth" id="auth">
+            <a href="auth.html">Регистрация</a>
+            <a href="login.html">Войти</a>
+        </div>
+        <ul class="header__nav">
+            <li class="header__link"><a href="index.html">Main</a></li>
+            <li class="header__link"><a href="job.html" id="list">Job</a></li>
+            <li class="header__link"><a href="internship.html">Internship</a></li>
+        </ul>
+        <a href="create.html" class="header__create" id="create">Добавить вакансию</a>
+    </header>
+    <section class="job">
+        <h2 class="job__title" style="width: 250px;">Групповой набор</h2>
+        <div class="job__list">
+            <div class="card">
+                <div class="card__info">
+                    <div class="card__title">AES-MACHINERY</div>
+                    <div class="card__pos">Software Developer</div>
+                    <div class="card__pay">150 000 тг/мес</div>
+                    <div class="card__exp">Стаж: 2.5 - 3 года</div>
+                    <div class="card__country">Kazakhstan</div>
+                    <div class="card__descr">Разработка ПО для беспилотных устройств</div>
+                </div>
+                <button class="card__submit">Подать заявку</button>
+            </div>
+        </div>
+    </section>
+    <script src="scripts/switch.js"></script>
+    <script src="scripts/group.js"></script>
+</body>
+
+</html>

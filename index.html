@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podvalchik</title>
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <a href="user.html" class="header__user" id="avatar">
+            <img src="icons/user.svg" alt="">
+        </a>
+        <div class="header__auth" id="auth">
+            <a href="auth.html">Регистрация</a>
+            <a href="login.html">Войти</a>
+        </div>
+        <ul class="header__nav">
+            <li class="header__link"><a href="job.html" id="list">Job</a></li>
+            <li class="header__link"><a href="internship.html" id="list-intern">Internship</a></li>
+            <li class="header__link"><a href="group.html" id="group">Group</a></li>
+        </ul>
+        <a href="create.html" class="header__create" id="create">Добавить вакансию</a>
+    </header>
+    <section class="main">
+        <div class="main__block">
+            <div class="main__descr">
+                <h2 class="main__title">Найти работу</h2>
+                <p class="main__text">
+                    Вы можете искать вакансии и резюме, введя город или профессию
+                </p>
+            </div>
+            <div class="main__search">
+                <label for="text" class="main__label">Найти работу</label>
+                <input type="text" class="main__textinput" name="text">
+                <button class="main__submit">Найти</button>
+            </div>
+        </div>
+    </section>
+    <section class="about">
+        <h2 class="about__label">Как начать</h2>
+        <div class="about__steps">
+            <div class="about__step">
+                <div class="about__title">Зарегистрируйтесь</div>
+                <div class="about__descr">Укажите свое имя, специальность, возраст, пол, страну|город и стаж работы
+                </div>
+            </div>
+            <div class="about__step">
+                <div class="about__title">Поиск работы</div>
+                <div class="about__descr">После регистрации начните поиск работы или стажировки, выставив все
+                    интересующие вас фильтры</div>
+            </div>
+            <div class="about__step">
+                <div class="about__title">Подайте заявку</div>
+                <div class="about__descr">Отправьте свое резюме, запишитесь на интервью и начните изучать
+                    новую профессию</div>
+            </div>
+        </div>
+    </section>
+    <div class="overlay"></div>
+    <script src="scripts/switch.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>

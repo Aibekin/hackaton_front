@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <link rel="stylesheet" href="css/user.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <ul class="header__nav">
+            <ul class="header__nav">
+                <li class="header__link"><a href="index.html">Main</a></li>
+                <li class="header__link"><a href="job.html" id="list"></a></li>
+                <li class="header__link"><a href="internship.html">Internship</a></li>
+                <li class="header__link"><a href="group.html">Group</a></li>
+            </ul>
+        </ul>
+        <a href="create.html" class="header__create" id="create">Добавить вакансию</a>
+    </header>
+    <section class="user">
+        <div class="user__block">
+            <div class="user__descr">
+                <div class="user__avatar">
+                    <img src="icons/user.svg" alt="">
+                </div>
+                <h2 class="user__name">Nikita Sahiulin</h2>
+                <div class="user__role worker">
+                    <div class="user__spec">Specialization: <b>Software Developer</b></div>
+                    <div class="user__age">Age: <b>76 y.o.</b></div>
+                    <div class="user__sex">Gender: <b>Transgender</b></div>
+                </div>
+                <div class="user__role employer">
+                    <div class="user__org">Organization: <b>AES-MACHINERY</b></div>
+                </div>
+                <div class="user__country">Country: <b>Kazakhstan</b></div>
+                <div class="user__links">
+                    <a href="#">Edit user</a>
+                    <a href="index.html" onclick="localStorage.removeItem('token')">Exit</a>
+                </div>
+
+            </div>
+            <div class="user__exp">
+                Company: <b>AUES DIT</b><br><br>
+                Position: <b>Programmer</b><br><br>
+                Work experience: <b>2.5 years</b><br><br>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex nobis placeat pariatur labore eveniet
+                impedit enim ipsam, culpa accusantium asperiores eligendi reiciendis itaque animi sit magnam quisquam
+                odio eos? Maiores.
+            </div>
+        </div>
+    </section>
+    <script>
+        const token = localStorage.getItem("token");
+        const switcher = document.querySelector("#list");
+        fetch("https://hackaton-backend-r2a2.onrender.com/auth/me", {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка авторизации');
+                }
+                return response.json();
+            })
+            .then(userData => {
+                console.log(userData);
+                if (userData.role === "worker") {
+                    switcher.textContent = "Jobs";
+                } else if (userData.role === "employer") {
+                    switcher.textContent = "Resumes";
+                }
+            });
+    </script>
+    <script src="scripts/user.js"></script>
+</body>
+
+</html>

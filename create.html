@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create</title>
+    <link rel="stylesheet" href="css/auth.min.css">
+</head>
+
+<body>
+    <div class="auth" id="vacancy">
+        <h2 class="auth__title">Добавить вакансию</h2>
+        <form method="post" class="auth__form" id="createForm">
+            <div class="auth__info">
+                <div class="auth__item">
+                    <label for="position">Требуется</label>
+                    <input type="text" name="position" class="auth__input" placeholder="Software Developer"
+                        id="position">
+                </div>
+                <div class="auth__item">
+                    <label for="payment">Зарплата</label>
+                    <input type="number" name="payment" class="auth__input" placeholder="" id="payment">
+                </div>
+                <div class="auth__item">
+                    <label for="exp">Опыт</label>
+                    <input type="number" name="exp" class="auth__input" placeholder="" id="exp">
+                </div>
+                <div class="auth__item">
+                    <label for="group">Групповой набор</label>
+                    <input type="text" name="group" class="auth__input" placeholder="Да/Нет" id="group">
+                </div>
+                <div class="auth__password">
+                    <label for="descr">Описание</label>
+                    <input type="text" class="auth__input" name="descr" id="descr">
+                </div>
+            </div>
+            <button type="submit" class="auth__submit">Добавить</button>
+        </form>
+    </div>
+
+    <div class="auth auth-hidden" id="resume">
+        <h2 class="auth__title">Добавить вакансию</h2>
+        <form method="post" class="auth__form" id="createForm">
+            <div class="auth__info">
+                <div class="auth__item">
+                    <label for="position">Требуется</label>
+                    <input type="text" name="position" class="auth__input" placeholder="Software Developer"
+                        id="position">
+                </div>
+                <div class="auth__item">
+                    <label for="payment">Зарплата</label>
+                    <input type="number" name="payment" class="auth__input" placeholder="" id="payment">
+                </div>
+                <div class="auth__item">
+                    <label for="exp">Опыт</label>
+                    <input type="number" name="exp" class="auth__input" placeholder="" id="exp">
+                </div>
+                <div class="auth__item">
+                    <label for="group">Групповой набор</label>
+                    <input type="text" name="group" class="auth__input" placeholder="Да/Нет" id="group">
+                </div>
+                <div class="auth__password">
+                    <label for="descr">Описание</label>
+                    <input type="text" class="auth__input" name="descr" id="descr">
+                </div>
+            </div>
+            <button type="submit" class="auth__submit">Добавить</button>
+        </form>
+    </div>
+    <script src="scripts/create.js"></script>
+</body>
+
+</html>
