@@ -1,38 +1,57 @@
-let currentProgress = 0; // В процентах
-const progressElement = document.getElementById('progress');
-const maxHeight = 300; // Высота контейнера в пикселях
+document.addEventListener("DOMContentLoaded", () => {
 
-function increaseProgress() {
-    if (currentProgress >= 100) return; // Не превышать 100%
-    currentProgress += 10;
-    if (currentProgress > 100) currentProgress = 100;
+    const menu = document.getElementById("hamburger");
+    const menu_icon = document.getElementById("menu_icon");
+    const header = document.querySelector(".header");
 
-    const newHeight = (currentProgress / 100) * maxHeight;
-    progressElement.style.height = newHeight + 'px';
-}
+    let menu_active = false;
+    menu.addEventListener('click', () => {
+        if (!menu_active) {
+            menu_icon.src = "icons/close.svg";
+            header.classList.add("header-active");
+            menu_active = true;
+        } else {
+            menu_icon.src = "icons/menu.svg";
+            header.classList.remove("header-active");
+            menu_active = false;
+        }
+    });
 
-let userRole = "worker";
-const token = localStorage.getItem("token");
+    let currentProgress = 0; // В процентах
+    const progressElement = document.getElementById('progress');
+    const maxHeight = 300; // Высота контейнера в пикселях
 
-const createCard = async () => {
-    if (userRole === "worker") {
-        await fetch("https://hackaton-backend-r2a2.onrender.com/jobs", {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            }
-        })
-            .then(response => response.json())
-            .then(jobData => {
-                const container = document.querySelector('.job__list');
-                console.log(jobData);
+    function increaseProgress() {
+        if (currentProgress >= 100) return; // Не превышать 100%
+        currentProgress += 10;
+        if (currentProgress > 100) currentProgress = 100;
 
-                jobData.forEach(job => {
-                    const card = document.createElement('div');
-                    card.classList.add('card');
+        const newHeight = (currentProgress / 100) * maxHeight;
+        progressElement.style.height = newHeight + 'px';
+    }
 
-                    card.innerHTML = `
+    let userRole = "worker";
+    const token = localStorage.getItem("token");
+
+    const createCard = async () => {
+        if (userRole === "worker") {
+            await fetch("https://hackaton-backend-r2a2.onrender.com/jobs", {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(response => response.json())
+                .then(jobData => {
+                    const container = document.querySelector('.job__list');
+                    console.log(jobData);
+
+                    jobData.forEach(job => {
+                        const card = document.createElement('div');
+                        card.classList.add('card');
+
+                        card.innerHTML = `
                 <div class="card__info">
                     <div class="card__title">${job.position}</div>
                     <div class="card__pos"> ${job.organizationName}</div>
@@ -45,36 +64,36 @@ const createCard = async () => {
                 <button class="card__submit">Подать заявку</button>
             `;
 
-                    container.appendChild(card);
+                        container.appendChild(card);
+                    });
+                })
+                .catch(error => console.error('Ошибка загрузки JSON:', error));
+
+            const buttons = document.querySelectorAll(".card__submit");
+            buttons.forEach(button => {
+                button.addEventListener("click", () => {
+                    increaseProgress();
                 });
-            })
-            .catch(error => console.error('Ошибка загрузки JSON:', error));
-
-        const buttons = document.querySelectorAll(".card__submit");
-        buttons.forEach(button => {
-            button.addEventListener("click", () => {
-                increaseProgress();
             });
-        });
 
-    } else if (userRole === "employer") {
-        await fetch("https://hackaton-backend-r2a2.onrender.com/resumes", {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            }
-        })
-            .then(response => response.json())
-            .then(jobData => {
-                console.log(jobData);
-                const container = document.querySelector('.job__list');
+        } else if (userRole === "employer") {
+            await fetch("https://hackaton-backend-r2a2.onrender.com/resumes", {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(response => response.json())
+                .then(jobData => {
+                    console.log(jobData);
+                    const container = document.querySelector('.job__list');
 
-                jobData.forEach(job => {
-                    const card = document.createElement('div');
-                    card.classList.add('card');
+                    jobData.forEach(job => {
+                        const card = document.createElement('div');
+                        card.classList.add('card');
 
-                    card.innerHTML = `
+                        card.innerHTML = `
                     <div class="card__info">
                         <div class="card__title">${job.position}</div>
                         <div class="card__pos">${job.userName}</div>
@@ -85,58 +104,59 @@ const createCard = async () => {
                     <button class="card__submit">Подать заявку</button>
                 `;
 
-                    container.appendChild(card);
+                        container.appendChild(card);
+                    });
+                })
+                .catch(error => console.error('Ошибка загрузки JSON:', error));
+
+            const buttons = document.querySelectorAll(".card__submit");
+            buttons.forEach(button => {
+                button.addEventListener("click", () => {
+                    increaseProgress();
                 });
-            })
-            .catch(error => console.error('Ошибка загрузки JSON:', error));
-
-        const buttons = document.querySelectorAll(".card__submit");
-        buttons.forEach(button => {
-            button.addEventListener("click", () => {
-                increaseProgress();
             });
-        });
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    const switcher = document.querySelector("#list");
-    const auth = document.querySelector("#auth");
-    const avatar = document.querySelector("#avatar");
-    const create = document.getElementById("create");
-
-    if (!token) {
-        auth.style.display = "flex";
-        avatar.style.display = "none";
-    } else {
-        avatar.style.display = "block";
-        auth.style.display = "none";
-    }
-
-    fetch("https://hackaton-backend-r2a2.onrender.com/auth/me", {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
         }
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Ошибка авторизации');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const switcher = document.querySelector("#list");
+        const auth = document.querySelector("#auth");
+        const avatar = document.querySelector("#avatar");
+        const create = document.getElementById("create");
+
+        if (!token) {
+            auth.style.display = "flex";
+            avatar.style.display = "none";
+        } else {
+            avatar.style.display = "block";
+            auth.style.display = "none";
+        }
+
+        fetch("https://hackaton-backend-r2a2.onrender.com/auth/me", {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
             }
-            return response.json();
         })
-        .then(userData => {
-            console.log(userData);
-            if (userData.role === "worker") {
-                switcher.textContent = "Jobs";
-                create.textContent = "Добавить Резюме";
-                userRole = "worker";
-            } else if (userData.role === "employer") {
-                switcher.textContent = "Resumes";
-                create.textContent = "Добавить Вакансию";
-                userRole = "employer";
-            }
-            createCard();
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка авторизации');
+                }
+                return response.json();
+            })
+            .then(userData => {
+                console.log(userData);
+                if (userData.role === "worker") {
+                    switcher.textContent = "Jobs";
+                    create.textContent = "Добавить Резюме";
+                    userRole = "worker";
+                } else if (userData.role === "employer") {
+                    switcher.textContent = "Resumes";
+                    create.textContent = "Добавить Вакансию";
+                    userRole = "employer";
+                }
+                createCard();
+            });
+    });
 });

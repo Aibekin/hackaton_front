@@ -1,1 +1,213 @@
-*{-webkit-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;font-family:"Montserrat",sans-serif}body{width:100vw;height:100vh;position:relative;background-color:#333;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.auth{width:500px;min-height:350px;padding:30px;background-color:#fff;border-radius:25px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;-webkit-box-align:center;-ms-flex-align:center;align-items:center;gap:15px}.auth-hidden{display:none}.auth__title{font-size:25px;font-weight:600;color:#222}.auth__type{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:10px}.auth__type label{font-size:15px;font-weight:600}.auth__type select{width:100%;height:35px;font-size:15px;border:2px solid #222;border-radius:25px;color:#222;padding:0 15px}.auth__form{width:100%;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;gap:20px}.auth__info{width:100%;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:20px}.auth__info-hidden{display:none}.auth__item{width:200px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:10px}.auth__item label{font-size:15px;font-weight:600}.auth__item .genders{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;-webkit-box-align:center;-ms-flex-align:center;align-items:center;gap:50px}.auth__input{width:100%;height:35px;font-size:15px;border:2px solid #222;border-radius:25px;color:#222;padding:0 15px}.auth__password{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;gap:10px}.auth__password label{font-size:15px;font-weight:600}.auth__submit{width:100%;height:35px;font-size:15px;font-weight:700;border:none;background-color:#49932c;border-radius:25px;color:#222;padding:0 15px;cursor:pointer}/*# sourceMappingURL=auth.min.css.map */
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-color: #333;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.auth {
+    width: 500px;
+    min-height: 350px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 25px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 15px
+}
+
+.auth-hidden {
+    display: none
+}
+
+.auth__title {
+    font-size: 25px;
+    font-weight: 600;
+    color: #222
+}
+
+.auth__type {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    gap: 10px
+}
+
+.auth__type label {
+    font-size: 15px;
+    font-weight: 600
+}
+
+.auth__type select {
+    width: 100%;
+    height: 35px;
+    font-size: 15px;
+    border: 2px solid #222;
+    border-radius: 25px;
+    color: #222;
+    padding: 0 15px
+}
+
+.auth__form {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    gap: 20px
+}
+
+.auth__info {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 20px
+}
+
+.auth__info-hidden {
+    display: none
+}
+
+.auth__item {
+    width: 200px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    gap: 10px
+}
+
+.auth__item label {
+    font-size: 15px;
+    font-weight: 600
+}
+
+.auth__item .genders {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 50px
+}
+
+.auth__input {
+    width: 100%;
+    height: 35px;
+    font-size: 15px;
+    border: 2px solid #222;
+    border-radius: 25px;
+    color: #222;
+    padding: 0 15px
+}
+
+.auth__password {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    gap: 10px
+}
+
+.auth__password label {
+    font-size: 15px;
+    font-weight: 600
+}
+
+.auth__submit {
+    width: 100%;
+    height: 35px;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    background-color: #49932c;
+    border-radius: 25px;
+    color: #222;
+    padding: 0 15px;
+    cursor: pointer
+}
+
+/*# sourceMappingURL=auth.min.css.map */
