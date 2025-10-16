@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         auth.style.display = "none";
     }
 
-    fetch("http://localhost:5000/auth/me", {
+    fetch("https://hackaton-backend-r2a2.onrender.com/auth/me", {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const API_URL = "http://localhost:5000";
+    const API_URL = "https://hackaton-backend-r2a2.onrender.com";
     const menu = document.getElementById("hamburger");
     const menu_icon = document.getElementById("menu_icon");
     const header = document.querySelector(".header");

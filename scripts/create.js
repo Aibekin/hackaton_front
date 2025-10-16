@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let userRole = null;
 
     try {
-        const response = await fetch("http://localhost:5000/auth/me", {
+        const response = await fetch("https://hackaton-backend-r2a2.onrender.com/auth/me", {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -79,10 +79,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     vacancyForm.addEventListener('submit', e =>
-        handleSubmit(e, 'http://localhost:5000/jobs', 'employer', vacancyForm)
+        handleSubmit(e, 'https://hackaton-backend-r2a2.onrender.com/jobs', 'employer', vacancyForm)
     );
 
     resumeForm.addEventListener('submit', e =>
-        handleSubmit(e, 'http://localhost:5000/resumes', 'worker', resumeForm)
+        handleSubmit(e, 'https://hackaton-backend-r2a2.onrender.com/resumes', 'worker', resumeForm)
     );
 });
