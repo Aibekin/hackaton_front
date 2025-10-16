@@ -1,124 +1,95 @@
 document.addEventListener("DOMContentLoaded", () => {
-
+    const API_URL = "http://localhost:5000";
     const menu = document.getElementById("hamburger");
     const menu_icon = document.getElementById("menu_icon");
     const header = document.querySelector(".header");
-
-    let menu_active = false;
-    menu.addEventListener('click', () => {
-        if (!menu_active) {
-            menu_icon.src = "icons/close.svg";
-            header.classList.add("header-active");
-            menu_active = true;
-        } else {
-            menu_icon.src = "icons/menu.svg";
-            header.classList.remove("header-active");
-            menu_active = false;
-        }
-    });
-
-    let currentProgress = 0; // В процентах
     const progressElement = document.getElementById('progress');
-    const maxHeight = 300; // Высота контейнера в пикселях
-
-    function increaseProgress() {
-        if (currentProgress >= 100) return; // Не превышать 100%
-        currentProgress += 10;
-        if (currentProgress > 100) currentProgress = 100;
-
-        const newHeight = (currentProgress / 100) * maxHeight;
-        progressElement.style.height = newHeight + 'px';
-    }
-
-    let userRole = "worker";
     const token = localStorage.getItem("token");
 
-    const createCard = async () => {
-        if (userRole === "worker") {
-            await fetch("https://hackaton-backend-r2a2.onrender.com/jobs", {
+    let menu_active = false;
+    let userRole = "worker";
+    let currentProgress = 0;
+    const maxHeight = 300;
+
+    // Меню
+    menu.addEventListener('click', () => {
+        menu_active = !menu_active;
+        menu_icon.src = menu_active ? "icons/close.svg" : "icons/menu.svg";
+        header.classList.toggle("header-active", menu_active);
+    });
+
+    // Прогресс
+    function increaseProgress() {
+        if (currentProgress >= 100) return;
+        currentProgress += 10;
+        if (currentProgress > 100) currentProgress = 100;
+        progressElement.style.height = (currentProgress / 100) * maxHeight + 'px';
+    }
+
+    // Создание карточек вакансий / резюме
+    async function createCard() {
+        const container = document.querySelector('.job__list');
+        container.innerHTML = '';
+
+        const endpoint = userRole === "worker" ? "/jobs" : "/resumes";
+
+        try {
+            const response = await fetch(`${API_URL}${endpoint}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 }
-            })
-                .then(response => response.json())
-                .then(jobData => {
-                    const container = document.querySelector('.job__list');
-                    console.log(jobData);
-
-                    jobData.forEach(job => {
-                        const card = document.createElement('div');
-                        card.classList.add('card');
-
-                        card.innerHTML = `
-                <div class="card__info">
-                    <div class="card__title">${job.position}</div>
-                    <div class="card__pos"> ${job.organizationName}</div>
-                    <div class="card__pay"> ${job.payment} тг/мес</div>
-                    <div class="card__exp">Стаж: ${job.experience}</div>
-                    <div class="card__group">Групповой набор: ${job.group ? "Да" : "Нет"}</div>
-                    <div class="card__country">${job.country}</div>
-                    <div class="card__descr"> ${job.description}</div>
-                </div>
-                <button class="card__submit">Подать заявку</button>
-            `;
-
-                        container.appendChild(card);
-                    });
-                })
-                .catch(error => console.error('Ошибка загрузки JSON:', error));
-
-            const buttons = document.querySelectorAll(".card__submit");
-            buttons.forEach(button => {
-                button.addEventListener("click", () => {
-                    increaseProgress();
-                });
             });
 
-        } else if (userRole === "employer") {
-            await fetch("https://hackaton-backend-r2a2.onrender.com/resumes", {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
+            if (!response.ok) throw new Error(`Ошибка запроса: ${response.status}`);
+            const data = await response.json();
+            console.log("Полученные данные:", data);
+
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+
+                if (userRole === "worker") {
+                    card.innerHTML = `
+                        <div class="card__info">
+                            <div class="card__title">${item.position}</div>
+                            <div class="card__pos">${item.organizationName}</div>
+                            <div class="card__pay">${item.payment} тг/мес</div>
+                            <div class="card__exp">Стаж: ${item.experience}</div>
+                            <div class="card__group">Групповой набор: ${item.group ? "Да" : "Нет"}</div>
+                            <div class="card__country">${item.country}</div>
+                            <div class="card__descr">${item.description}</div>
+                        </div>
+                        <button class="card__submit">Подать заявку</button>
+                    `;
+                } else {
+                    card.innerHTML = `
+                        <div class="card__info">
+                            <div class="card__title">${item.position}</div>
+                            <div class="card__pos">${item.userName}</div>
+                            <div class="card__exp">Опыт: ${item.experience} лет</div>
+                            <div class="card__country">${item.country}</div>
+                            <div class="card__descr">${item.description}</div>
+                        </div>
+                        <button class="card__submit">Просмотреть</button>
+                    `;
                 }
-            })
-                .then(response => response.json())
-                .then(jobData => {
-                    console.log(jobData);
-                    const container = document.querySelector('.job__list');
 
-                    jobData.forEach(job => {
-                        const card = document.createElement('div');
-                        card.classList.add('card');
-
-                        card.innerHTML = `
-                    <div class="card__info">
-                        <div class="card__title">${job.position}</div>
-                        <div class="card__pos">${job.userName}</div>
-                        <div class="card__exp">Опыт: ${job.experience} лет</div>
-                        <div class="card__country">${job.country}</div>
-                        <div class="card__descr"> ${job.description}</div>
-                    </div>
-                    <button class="card__submit">Подать заявку</button>
-                `;
-
-                        container.appendChild(card);
-                    });
-                })
-                .catch(error => console.error('Ошибка загрузки JSON:', error));
-
-            const buttons = document.querySelectorAll(".card__submit");
-            buttons.forEach(button => {
-                button.addEventListener("click", () => {
-                    increaseProgress();
-                });
+                container.appendChild(card);
             });
+
+            document.querySelectorAll(".card__submit").forEach(btn => {
+                btn.addEventListener("click", increaseProgress);
+            });
+
+        } catch (error) {
+            console.error("Ошибка загрузки данных:", error);
         }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    // Авторизация и определение роли
+    async function initUser() {
         const switcher = document.querySelector("#list");
         const auth = document.querySelector("#auth");
         const avatar = document.querySelector("#avatar");
@@ -127,36 +98,41 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!token) {
             auth.style.display = "flex";
             avatar.style.display = "none";
-        } else {
-            avatar.style.display = "block";
-            auth.style.display = "none";
+            return;
         }
 
-        fetch("https://hackaton-backend-r2a2.onrender.com/auth/me", {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            }
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Ошибка авторизации');
+        try {
+            const res = await fetch(`${API_URL}/auth/me`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
                 }
-                return response.json();
-            })
-            .then(userData => {
-                console.log(userData);
-                if (userData.role === "worker") {
-                    switcher.textContent = "Jobs";
-                    create.textContent = "Добавить Резюме";
-                    userRole = "worker";
-                } else if (userData.role === "employer") {
-                    switcher.textContent = "Resumes";
-                    create.textContent = "Добавить Вакансию";
-                    userRole = "employer";
-                }
-                createCard();
             });
-    });
+
+            if (!res.ok) throw new Error("Ошибка авторизации");
+            const userData = await res.json();
+            console.log("Пользователь:", userData);
+
+            avatar.style.display = "block";
+            auth.style.display = "none";
+
+            if (userData.role === "worker") {
+                switcher.textContent = "Jobs";
+                create.textContent = "Добавить Резюме";
+                userRole = "worker";
+            } else {
+                switcher.textContent = "Resumes";
+                create.textContent = "Добавить Вакансию";
+                userRole = "employer";
+            }
+
+            // загружаем карточки после определения роли
+            await createCard();
+
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    initUser();
 });
